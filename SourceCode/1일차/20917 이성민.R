@@ -1,33 +1,33 @@
-# jdk ¹Ş°í   
-#ÄÜ¼ÖÃ¢¿¡ 
+# jdk ë°›ê³    
+#ì½˜ì†”ì°½ì— 
 #install.packages("remotes")
-#¼³Ä¡µÇ¸é
+#ì„¤ì¹˜ë˜ë©´
 #remotes::install_github('haven-jeon/KoNLP', upgrade = "never", INSTALL_opts=c("--no-multiarch"))
-#¹®¼­Æú´õ¿¡ ÀáÀÌ ¿ÀÁú ¾Ê³×¿ä.txt ÆÄÀÏ ¹Ş¾Æ¼­ ³ÖÀ¸¼¼¿ä
+#ë¬¸ì„œí´ë”ì— ì ì´ ì˜¤ì§ˆ ì•Šë„¤ìš”.txt íŒŒì¼ ë°›ì•„ì„œ ë„£ìœ¼ì„¸ìš”
 
-getwd() # ÀúÀåµÈ °æ·Î ºÒ·¯¿À±â
-install.packages("wordcloud2") #wordcloud2 ÆĞÅ°Áö ¼³Ä¡
+getwd() # ì €ì¥ëœ ê²½ë¡œ ë¶ˆëŸ¬ì˜¤ê¸°
+install.packages("wordcloud2") #wordcloud2 íŒ¨í‚¤ì§€ ì„¤ì¹˜
 Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jdk1.8.0_271')
-library(KoNLP) # KoNLP ¶óÀÌºê·¯¸® ºÒ·¯¿À±â  
-library(wordcloud2) # wordcloud2 ¶óÀÌºê·¯¸® ºÒ·¯¿À±â
+library(KoNLP) # KoNLP ë¼ì´ë¸ŒëŸ¬ë¦¬ ë¶ˆëŸ¬ì˜¤ê¸°  
+library(wordcloud2) # wordcloud2 ë¼ì´ë¸ŒëŸ¬ë¦¬ ë¶ˆëŸ¬ì˜¤ê¸°
 
-useSejongDic() # ÇÑ±Û »çÀü ºÒ·¯¿À±â
+useSejongDic() # í•œê¸€ ì‚¬ì „ ë¶ˆëŸ¬ì˜¤ê¸°
 
-ÅØ½ºÆ®ÆÄÀÏÀÚÃ¼<-file("ÀáÀÌ ¿ÀÁú ¾Ê³×¿ä.txt", encoding = "UTF-8") #ÅØ½ºÆ® ÆÄÀÏ ºÒ·¯¿À±â
-ÅØ½ºÆ®ÆÄÀÏ³»¿ë <- readLines(ÅØ½ºÆ®ÆÄÀÏÀÚÃ¼) # ÁÙÀĞ±â
-close(ÅØ½ºÆ®ÆÄÀÏÀÚÃ¼) 
+í…ìŠ¤íŠ¸íŒŒì¼ìì²´<-file("ì ì´ ì˜¤ì§ˆ ì•Šë„¤ìš”.txt", encoding = "UTF-8") #í…ìŠ¤íŠ¸ íŒŒì¼ ë¶ˆëŸ¬ì˜¤ê¸°
+í…ìŠ¤íŠ¸íŒŒì¼ë‚´ìš© <- readLines(í…ìŠ¤íŠ¸íŒŒì¼ìì²´) # ì¤„ì½ê¸°
+close(í…ìŠ¤íŠ¸íŒŒì¼ìì²´) 
 
-¸í»ç¸¸<-sapply(ÅØ½ºÆ®ÆÄÀÏ³»¿ë, extractNoun, USE.NAMES = F) # ¸í»ç¸¸ ÀĞ±â
-¸í»ç¸¸ <- unlist(¸í»ç¸¸) # º¯¼öÀúÀå
+ëª…ì‚¬ë§Œ<-sapply(í…ìŠ¤íŠ¸íŒŒì¼ë‚´ìš©, extractNoun, USE.NAMES = F) # ëª…ì‚¬ë§Œ ì½ê¸°
+ëª…ì‚¬ë§Œ <- unlist(ëª…ì‚¬ë§Œ) # ë°ì´í„° ë³€í˜•í›„ ë³€ìˆ˜ì €ì¥
 
-head(¸í»ç¸¸, 30) # 30°³ Ãâ·Â(¸í»ç¸¸º¯¼ö)
+head(ëª…ì‚¬ë§Œ, 30) # 30ê°œ ì¶œë ¥(ëª…ì‚¬ë§Œë³€ìˆ˜)
 
-Áßº¹È½¼ö <- table(¸í»ç¸¸)  #Áßº¹È½¼ö °è»ê(¸í»ç¸¸º¯¼ö)
+ì¤‘ë³µíšŸìˆ˜ <- table(ëª…ì‚¬ë§Œ)  #ì¤‘ë³µíšŸìˆ˜ ê³„ì‚°(ëª…ì‚¬ë§Œë³€ìˆ˜)
 
-head(sort(Áßº¹È½¼ö, decreasing = T), 30) #¸¹Àº °Í ¼øÀ¸·Î 30°³ Ãâ·Â
+head(sort(ì¤‘ë³µíšŸìˆ˜, decreasing = T), 30) #ë§ì€ ê²ƒ ìˆœìœ¼ë¡œ 30ê°œ ì¶œë ¥
 
-wordcount2 <- head(sort(Áßº¹È½¼ö, decreasing=T),30)
-wordcloud2(wordcount2,gridSize=10,size=1,shape="diamond") # ¿öµåÅ¬¶ó¿ìµå
+wordcount2 <- head(sort(ì¤‘ë³µíšŸìˆ˜, decreasing=T),30)
+wordcloud2(wordcount2,gridSize=10,size=1,shape="diamond") # ì›Œë“œí´ë¼ìš°ë“œ ëª¨ì–‘ ë‹¤ì´ì•„ëª¬ë“œ
 
 
 
