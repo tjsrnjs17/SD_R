@@ -1,0 +1,32 @@
+# jdk 받고   
+# 콘솔 창에
+# install.packages ( "원격")
+# 설치하면
+# remotes :: install_github ( 'haven-jeon / KoNLP', upgrade = "never", INSTALL_opts = c ( "-no-multiarch"))
+# 문서 폴더에 잠이 오질 꼭 보네요 .txt 파일 제출세요
+
+# install.packages ( "stringi")
+
+# getwd ()
+# install.packages ( "wordcloud2")
+# Sys.setenv (JAVA_HOME = 'C : \\ Program Files \\ Java \\ jdk1.8.0_271')
+# 라이브러리 (KoNLP)
+# 라이브러리 (wordcloud2)
+
+# useSejongDic ()
+
+# 텍스트 파일 자체 <-file ( "잠이 오질 보장 네요 .txt", encoding = "UTF-8")
+# 텍스트 파일 내용 <-readLines (텍스트 파일 자체)
+# close (텍스트 파일 자체)
+
+# 명사 만 <-sapply (텍스트 파일 내용, extractNoun, USE.NAMES = F)
+# 명사 만 <-unlist (명사 만)
+
+# head (명사 만, 30)
+
+# 이번 횟수 <-table (명사 만)
+
+# head (sort (중복 횟수, 감소 = T), 30)
+
+# wordcount2 <-head (sort (중복 횟수, decreasing = T), 30)
+# wordcloud2 (wordcount2, gridSize = 10, size = 1, shape = "circle")
