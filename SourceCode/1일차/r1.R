@@ -1,3 +1,11 @@
+# jdk 받고   
+#콘솔창에 
+#install.packages("remotes")
+#설치되면
+#remotes::install_github('haven-jeon/KoNLP', upgrade = "never", INSTALL_opts=c("--no-multiarch"))
+
+
+
 getwd()
 install.packages("wordcloud2") 
 Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jdk1.8.0_271')
