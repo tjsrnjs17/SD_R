@@ -3,7 +3,7 @@
 #install.packages("remotes")
 #설치되면
 #remotes::install_github('haven-jeon/KoNLP', upgrade = "never", INSTALL_opts=c("--no-multiarch"))
-
+#문서폴더에 잠이 오질 않네요.txt 파일 받아서 넣으세요
 
 
 getwd()
