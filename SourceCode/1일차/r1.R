@@ -1,28 +1,24 @@
-getwd() #ÇöÀç ÁöÁ¤µÈ ÀÛ¾÷°æ·Î
+getwd()
+install.packages("wordcloud2") 
+Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jdk1.8.0_271')
+library(KoNLP) 
+library(wordcloud2)
 
-install.packages("wordcloud2") #ÆĞÅ°Áö ¼³Ä¡
-Sys.setenv(JAVA_HOME='C:\\Program Files\\Java\\jdk1.8.0_191')
-library(KoNLP) #¶óÀÌºê·¯¸® ºÒ·¯¿À±â
-library(wordcloud2) #¶óÀÌºê·¯¸® ºÒ·¯¿À±â
+useSejongDic() 
 
-useSejongDic() #ÇÑ±¹¾î »çÀü ºÒ·¯¿À±â
+í…ìŠ¤íŠ¸íŒŒì¼ìì²´<-file("ì ì´ ì˜¤ì§ˆ ì•Šë„¤ìš”.txt", encoding = "UTF-8")
+í…ìŠ¤íŠ¸íŒŒì¼ë‚´ìš© <- readLines(í…ìŠ¤íŠ¸íŒŒì¼ìì²´)
+close(í…ìŠ¤íŠ¸íŒŒì¼ìì²´)
 
-ÅØ½ºÆ®ÆÄÀÏÀÚÃ¼<-file("ÀáÀÌ ¿ÀÁú ¾Ê³×¿ä.txt", encoding = "UTF-8") #³ë·¡.txt ÆÄÀÏ utf-8Çü½ÄÀ¸·Î ºÒ·¯¿À±â
-ÅØ½ºÆ®ÆÄÀÏ³»¿ë <- readLines(ÅØ½ºÆ®ÆÄÀÏÀÚÃ¼) #ÁÙ º°·Î ÀĞ±â
-close(ÅØ½ºÆ®ÆÄÀÏÀÚÃ¼)
+ëª…ì‚¬ë§Œ<-sapply(í…ìŠ¤íŠ¸íŒŒì¼ë‚´ìš©, extractNoun, USE.NAMES = F)
+ëª…ì‚¬ë§Œ <- unlist(ëª…ì‚¬ë§Œ)
 
-¸í»ç¸¸<-sapply(ÅØ½ºÆ®ÆÄÀÏ³»¿ë, extractNoun, USE.NAMES = F) #¸í»ç¸¸ °í¸£±â
-¸í»ç¸¸ <- unlist(¸í»ç¸¸) #µ¥ÀÌÅÍ º¤ÅÍÈ­
+head(ëª…ì‚¬ë§Œ, 30)
 
-head(¸í»ç¸¸, 30) #30°³¸¸ Ãâ·Â
+ì¤‘ë³µíšŸìˆ˜ <- table(ëª…ì‚¬ë§Œ) 
 
-Áßº¹È½¼ö <- table(¸í»ç¸¸) 
-#À§ÀÇ '¸í»ç¸¸' ÀÌ¶ó´Â º¯¼ö(µ¥ÀÌÅÍ)¸¦ °°Àº ´Ü¾î¸¦ 
-#±âÁØÀ¸·Î ÇÕÃÄ¼­ ¸î¹ø Áßº¹ ‰ç´ÂÁö °è»ê
+head(sort(ì¤‘ë³µíšŸìˆ˜, decreasing = T), 30)
 
-head(sort(Áßº¹È½¼ö, decreasing = T), 30) #ºóµµ¼ö°¡ ¸¹Àº ¼øÀ¸·Î 30°³ Ãâ·Â
-
-#¿öµåÅ¬¶ó¿ìµå »ı¼º
-wordcount2 <- head(sort(Áßº¹È½¼ö, decreasing=T),30)
+wordcount2 <- head(sort(ì¤‘ë³µíšŸìˆ˜, decreasing=T),30)
 wordcloud2(wordcount2,gridSize=10,size=1,shape="circle")
 
