@@ -1,16 +1,18 @@
+#install.packages('jsonlite')
+#install.packages('wordcloud2')
 library('jsonlite')
 library(wordcloud2) 
 
-jsonList = fromJSON('Ω√√ª ±‚∑œ.json')
+jsonList = fromJSON('ÏãúÏ≤≠ Í∏∞Î°ù.json')
 listSubtitles<-jsonList["subtitles"]
 
-Ω√√ª√§≥Œ<-list()
+ÏãúÏ≤≠Ï±ÑÎÑê<-list()
 
 for (i in 1:dim(listSubtitles)[1]) {
-  Ω√√ª√§≥Œ<-append(Ω√√ª√§≥Œ,listSubtitles[[1]][[i]]$name)
+  ÏãúÏ≤≠Ï±ÑÎÑê<-append(ÏãúÏ≤≠Ï±ÑÎÑê,listSubtitles[[1]][[i]]$name)
 }
 
-√§≥ŒΩ√√ªºˆ<-table(unlist(Ω√√ª√§≥Œ))
+Ï±ÑÎÑêÏãúÏ≤≠Ïàò<-table(unlist(ÏãúÏ≤≠Ï±ÑÎÑê))
 
-wordcount2 <- head(sort(√§≥ŒΩ√√ªºˆ, decreasing=T),40)
+wordcount2 <- head(sort(Ï±ÑÎÑêÏãúÏ≤≠Ïàò, decreasing=T),40)
 wordcloud2(wordcount2,gridSize=20,size=1,shape="circle")
