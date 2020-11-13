@@ -1,0 +1,18 @@
+#install.packages('jsonlite') #jsonlite 패키지 설치
+#install.packages('wordcloud2') #wordcloud2 패키지 설치
+library('jsonlite') #ljsonlite 불러오기 
+library(wordcloud2) #WORDCLOUD2 불러오기 
+
+jsonList = fromJSON('시청 기록.json') #json파일로 바꾼 시청기롤 불러오기 
+listSubtitles<-jsonList["subtitles"] #listSubtitles에 리스트 저장
+
+시청채널<-list() #list를 시청채널에 저장
+
+for (i in 1:dim(listSubtitles)[1]) { 
+  시청채널<-append(시청채널,listSubtitles[[1]][[i]]$name) #시청변수 리스트 
+} 
+
+채널시청수<-table(unlist(시청채널)) #시청채널 리스트를 시청채널수에 저장
+
+wordcount2 <- head(sort(채널시청수, decreasing=T),40) #시청수가 가장 많은 시청기록 40개 생성 
+wordcloud2(wordcount2,gridSize=20,size=1,shape="circle") #워드클라우드 그래프 생성 
