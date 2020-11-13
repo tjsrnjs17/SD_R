@@ -1,0 +1,18 @@
+#install.packages('jsonlite')
+#install.packages('wordcloud2')
+library('jsonlite')
+library(wordcloud2)##wordcloud2 에서 불러오기
+
+jsonList = fromJSON('시청 기록.json') ##데이터 포멧 데이터로 변환
+listSubtitles<-jsonList["subtitles"]
+
+시청채널<-list() ##List()에 대한 변수 선언해서 배열 형태로 구현 
+
+for (i in 1:dim(listSubtitles)[1]) { ##for 문으로 i 값 측정된 자료로 1부터 i만큼 반복
+  시청채널<-append(시청채널,listSubtitles[[1]][[i]]$name) ##listSubtitles[i]로 저장된 파일값 측정후 시청채널에 추가
+  ##append가 list 뒤에 자료를 추가 하는거 [0,1,2,3,4].append(6) => [0,1,2,3,4,5,6]으로 저장됨 
+  
+채널시청수<-table(unlist(시청채널))##중복되는 단어수 세기 table()이용해서 unlist 파일해제 데이터로
+
+wordcount2 <- head(sort(채널시청수, decreasing=T),1000) ##데이터 빈도수 측정 
+wordcloud2(wordcount2,gridSize=20,size=1,shape="circle") ##워드클라우드 생성 모양 = 원 
