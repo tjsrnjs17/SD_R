@@ -1,3 +1,4 @@
+#install.packages('ggplot2')
 library('jsonlite')
 library(ggplot2)
 
