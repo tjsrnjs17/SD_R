@@ -6,7 +6,7 @@ library(jsonlite)
 library(plyr)
 library(ggplot2)
 
-jsonList = fromJSON('export.json')
+jsonList = fromJSON('위치 기록.json')
 df <- as.data.frame(jsonList$locations)
 
 Sys.setlocale("LC_TIME", "C")
